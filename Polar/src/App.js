@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
+import QRCode from 'react-native-qrcode-svg';
+
 
 export default function App() {
 	return(
@@ -19,5 +21,5 @@ const styles = StyleSheet.create({
 		backgroundColor:'#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
-	}
-})
+	},
+});
