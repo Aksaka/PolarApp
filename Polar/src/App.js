@@ -2,14 +2,17 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import QRCode from 'react-native-qrcode-svg';
+import styled from 'styled-components/native';
+import Dog from './components/Dog'
 
 
 export default function App() {
 	return(
-		<View style = {styles.container}>
-		<StatusBar style="auto"> </StatusBar>
-		<Text> App! </Text>
-		</View>
+		
+		<Container>
+			<Dog />
+			<Text> Work well?</Text>
+		</Container>
 		
 	
 	);
@@ -23,3 +26,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+const Container = styled.TouchableOpacity`
+background-color: #3498db;
+border-radius: 15px;
+padding: 15px 30px;
+margin: 10px 0px;
+justify-content: center;
+`
