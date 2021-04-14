@@ -6,25 +6,26 @@ import styled from 'styled-components/native';
 import Button from './components/Button';
 
 export default function App() {
-	const [name, setName] = useState('?');
-	const [QRContext, setQRContext] = useState(0);
+	const [name, setName] = useState('');
+	const [QRContext, setQRContext] = useState('');
 	
 	
 	useEffect(() =>{
-		console.log(`Input: ${name}, QR: ${QRContext}\n`);
+		console.log(`Input: ${name}, QR: ${QRContext}`);
+		
 	});
 	
 	return(
 		<View style = {styles.container}>
 		<StatusBar style="auto"> </StatusBar>
 			<Container>
-				<Text> App? </Text>
+				<Text> Making QR Code </Text>
 				
 			<StyledText>Input: {name}</StyledText>
 
 			<StyledTextInput value = {name} onChangeText = {text => setName(text)}/>
-			<Button title="Generate" onPress= {() => setQRContext(1)}/>
-			{name === ''? null:<QRCode value = {name} /> }
+			<Button title="Generate" onPress= {() => setQRContext(name)}/>
+			{QRContext === ''? null:<QRCode value = {QRContext} /> }
 				
 			</Container>
 		</View>
