@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import QRCode from 'react-native-qrcode-svg';
 import styled from 'styled-components/native';
@@ -11,12 +11,13 @@ export default function App() {
 		
 		<Container>
 			<Dog />
-			<Text> Work well?</Text>
 		</Container>
 		
 	
 	);
 };
+
+
 
 const styles = StyleSheet.create({
 	container: {
