@@ -6,11 +6,16 @@ import TabNavigation from './Tabs';
 
 const Router= () => {
 	return (
-		<NavigationContainer>
-			<TabNavigation/>
-		</NavigationContainer>
+		<Container>
+			<text> Worrk???</text>
+		</Container>
 	)
 }
-
+const Container = styled.View`
+flex: 1;
+background-color: #ffffff;
+justify-content:center;
+align-items: center;
+`
 
 export default Router;
