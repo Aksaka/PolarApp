@@ -36,6 +36,7 @@ class HomeStore {
 		this.isConsumerInfoLoaded = false;
 		
 		let queryParams = `?consumerId=${consumerId}`;
+		console.log(`consumerID: ${consumerId}`)
 		return fetch(`${apiUrl}api/polar/consumer${queryParams}`, {method: "GET"})
 		.then(res => {
 			if(res.ok && res.status === 200){
