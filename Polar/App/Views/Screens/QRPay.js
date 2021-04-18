@@ -7,16 +7,18 @@ import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import CommonStyles from '../Common/styles';
 import MyButton from '../Components/Button';
 
+import HomeStore from '../../Stores/HomeStore';
+
 const StyledText = styled.Text`
 font-size: 30px;
 `;
 
 
 
-
 @inject("homeStore", "confirmStore") @observer
 class QRPay extends React.Component {
 	componentDidMount(){
+		
 		const { getConsumerId, loadConsumerInfo, createConsumer } = this.props.homeStore;
 		getConsumerId().then(res => {
 			return loadConsumerInfo(res);
@@ -32,11 +34,9 @@ class QRPay extends React.Component {
 	}
 
 	render() {
+		
 		const {consumerId, isLoading, isConsumerIdLoaded} = this.props.homeStore;
 		
-		function requestPayment() {
-			
-		}
 		
 		return (
 			<Container>
@@ -45,7 +45,7 @@ class QRPay extends React.Component {
 				{isConsumerIdLoaded? <QRCode value = {String(consumerId)} /> : <Text> QR code is Loading Now...</Text>}
 				<Text>  </Text>
 				<MyButton title = "Testing" onPress= {() => console.log(`ID: ${consumerId}, isLoading: ${isLoading}`)}/> 
-				<MyButton title = "Payment" onPress = {() => requestPayment()} />
+				<MyButton title = "Payment" onPress = {() => alert("Click!")} />
 				
 			</Container>
 		);
@@ -53,6 +53,7 @@ class QRPay extends React.Component {
 	
 	
 }
+
 
 
 

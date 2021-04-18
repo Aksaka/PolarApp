@@ -5,10 +5,12 @@ import {apiUrl} from '../Assets/Constants';
 class ConfirmStore{
 	@observable isLoading = false;
 	@observable paymentState = 0;
+	@observable payment = null;
 
 	@action setPaymentState = paymentState =>{
 		this.paymentState = paymentState;
 	}
+	
 	
 	
 	@action refreshPaymentRequest = async(consumerId) => {
