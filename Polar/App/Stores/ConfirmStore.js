@@ -11,7 +11,7 @@ class ConfirmStore{
 	}
 	
 	
-	@action getPaymentRequest = async(consumerId) => {
+	@action refreshPaymentRequest = async(consumerId) => {
 		this.isLoading = true;
 		let queryParams = `?consumerId=${consumerId}`;
 		return fetch(`${apiUrl}api/polar/payment${queryParams}`, {
