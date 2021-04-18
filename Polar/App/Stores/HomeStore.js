@@ -40,6 +40,7 @@ class HomeStore {
 		return fetch(`${apiUrl}api/polar/consumer${queryParams}`, {method: "GET"})
 		.then(res => {
 			if(res.ok && res.status === 200){
+				
 				return res.json();
 			}
 			else{
@@ -69,7 +70,9 @@ class HomeStore {
 		this.isConsumerIdLoaded=false;
 		this.isConsumerInfoLoaded = false;
 		
+		
 		return fetch(`${apiUrl}api/polar/consumer`,{method: "POST"}).then(res => {
+			console.log(JSON.stringify(res));
 			if(res.ok && res.status === 200) {
 				return res.json();
 			}
@@ -79,8 +82,8 @@ class HomeStore {
 		}).then(res =>{
 			if(res) {
 				this.consumerInfo= res;
-				this.sellerId = res.insertId;
-				return AsyncStorage.setItem('sellerId', String(this.sellerId));
+				this.consumerId = res.insertId;
+				return AsyncStorage.setItem('consumerId', String(this.consumerId));
 			}
 			else{
 				return Promise.reject(new Error("UnExpected Error"));

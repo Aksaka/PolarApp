@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native'
 import QRCode from 'react-native-qrcode-svg';
 import { observer, inject } from "mobx-react";
@@ -13,7 +13,8 @@ font-size: 30px;
 
 
 
-@inject("homeStore") @observer
+
+@inject("homeStore", "confirmStore") @observer
 class QRPay extends React.Component {
 	componentDidMount(){
 		const { getConsumerId, loadConsumerInfo, createConsumer } = this.props.homeStore;
@@ -31,25 +32,36 @@ class QRPay extends React.Component {
 	}
 
 	render() {
-		const {consumerId, isLoading} = this.props.homeStore;
+		const {consumerId, isLoading, isConsumerIdLoaded} = this.props.homeStore;
+		
+		function requestPayment() {
+			
+		}
+		
 		return (
 			<Container>
-				<StyledText> Consumer Id: {String(consumerId)} </StyledText>
+				{isConsumerIdLoaded? <StyledText> Consumer Id: {String(consumerId)} </StyledText> : <Text> Consumer Id is Loading now...</Text>}
 				<Text> </Text>
-				<QRCode value = {String(consumerId)} />
+				{isConsumerIdLoaded? <QRCode value = {String(consumerId)} /> : <Text> QR code is Loading Now...</Text>}
 				<Text>  </Text>
-				<MyButton title = "Payments" onPress={() => console.log(`Id: ${consumerId}`)}/>
+				<MyButton title = "Testing" onPress= {() => console.log(`ID: ${consumerId}, isLoading: ${isLoading}`)}/> 
+				<MyButton title = "Payment" onPress = {() => requestPayment()} />
 				
 			</Container>
 		);
 	};
 	
+	
 }
+
+
+
 const Container = styled.View`
 flex: 1;
 justify-content: center;
 align-items: center;
 `;
+
 const styles = StyleSheet.create({
     body: {
         width: '100%',
