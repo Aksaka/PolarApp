@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx';
+import React, {useState, useEffect} from 'react';
 
 import {apiUrl} from '../Assets/Constants';
 
@@ -6,12 +7,26 @@ class ConfirmStore{
 	@observable isLoading = false;
 	@observable paymentState = 0;
 	@observable payment = null;
+	@observable price = 0;
+	@observable sellerId = 0;
+	@observable merchantId = 0;
+	@observable cardId = 0;
+	@observable cardProperty = null;
+	@observable Error = null;
+	@observable Data = null;
 
 	@action setPaymentState = paymentState =>{
 		this.paymentState = paymentState;
 	}
 	
-	
+	@action getPaymentInfo = async(consumerId) => {
+		this.isLoading = true;
+		let queryParams = `?consumerId=${consumerId}`;
+		
+		
+		
+		this.isLoading = false;
+	}
 	
 	@action refreshPaymentRequest = async(consumerId) => {
 		this.isLoading = true;

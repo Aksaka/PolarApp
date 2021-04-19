@@ -4,11 +4,12 @@ import { observable, action } from 'mobx';
 import { apiUrl } from '../Assets/Constants';
 
 class HomeStore {
-    @observable isLoading = false;
+    @observable consumerId = 88;
+	@observable isLoading = false;
     @observable isConsumerIdLoaded = false;
     @observable isConsumerInfoLoaded = false;
     @observable consumerInfo = null;
-    @observable consumerId = null;
+    
 
 	@action getConsumerId = async () => {
 		this.isLoading = true;

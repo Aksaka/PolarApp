@@ -8,18 +8,54 @@ import CommonStyles from '../Common/styles';
 import MyButton from '../Components/Button';
 
 import HomeStore from '../../Stores/HomeStore';
+import ConfirmStore from '../../Stores/ConfirmStore';
 
 const StyledText = styled.Text`
 font-size: 30px;
 `;
 
+/*
+const QRPay = () =>{
+	const homestore = new HomeStore();
+	const confirmstore = new ConfirmStore();
+	const [sw, setSW] = useState('')
 
+		
+	homestore.getConsumerId().then(res => {
+		return homestore.loadConsumerInfo(res);
+	}, reason => {
+		if(reason == "CONSUMERID_MISSING"){
+			return homestore.createConsumer();
+		}
+	}).catch(error => {
+		if(error){
+			console.log(error);
+		}
+	});
+	
+	
+	return (
+			<Container>
+				{homestore.isLoading? <StyledText> Consumer Id: {homestore.consumerId} </StyledText> : <Text> Consumer Id is Loading now...</Text>}
+				<Text> </Text>
+				{homestore.isLoading? <QRCode value = {String(homestore.consumerId)} /> : <Text> QR code is Loading Now...</Text>}
+				<Text>  </Text>
+				<MyButton title = "Testing" onPress= {() => console.log(`ID: ${homestore.consumerId}, isLoading: ${homestore.isLoading}`)}/> 
+				<MyButton title = "Payment" onPress = {() => {setSW(''); alert(100)}} />
+				
+			</Container>
+	);
+	
+};*/
 
-@inject("homeStore", "confirmStore") @observer
+@inject("homeStore") @inject("confirmStore") @observer
 class QRPay extends React.Component {
 	componentDidMount(){
 		
 		const { getConsumerId, loadConsumerInfo, createConsumer } = this.props.homeStore;
+		
+		
+		console.log(getConsumerId, loadConsumerInfo);
 		getConsumerId().then(res => {
 			return loadConsumerInfo(res);
 		}, reason => {
@@ -31,13 +67,15 @@ class QRPay extends React.Component {
 				console.log(error);
 			}
 		});
+		
+		
 	}
 
 	render() {
 		
 		const {consumerId, isLoading, isConsumerIdLoaded} = this.props.homeStore;
 		
-		
+		console.log("Up dated", consumerId);
 		return (
 			<Container>
 				{isConsumerIdLoaded? <StyledText> Consumer Id: {String(consumerId)} </StyledText> : <Text> Consumer Id is Loading now...</Text>}
