@@ -1,4 +1,4 @@
-export const apiUrl =     "http://54.180.90.8:8080/"; 
+export const apiUrl = "http://54.180.90.8:8080/"; 
 export const colors = {
 	white: '#ffffff',
 	black: '#000000',

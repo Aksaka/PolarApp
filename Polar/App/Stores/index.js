@@ -1,9 +1,9 @@
-import HomeStore from "./HomeStore";
 import ConfirmStore from "./ConfirmStore";
+import UseFetch from './useFetch';
+import {createConsumer} from './HomeStore';
 
 const Stores = {
-	homeStore: new HomeStore(),
 	confirmStore: new ConfirmStore(),
 };
 
-export default Stores;
+export {Stores, UseFetch, createConsumer};

@@ -1,11 +1,8 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { observable, action } from 'mobx';
 import {useState, useEffect} from 'react';
 
 import { apiUrl } from '../Assets/Constants';
 
-
-function useFetch(URL, METHOD) {
+export const Fetching = URL => {
 	const [data, setData] = useState(null);
 	const [error, setError]= useState(null);
 	const [inProgress, setinProgress] = useState(false);
@@ -36,22 +33,4 @@ function useFetch(URL, METHOD) {
 	}, [])
 	
 	return {data, error, inProgress};
-}
-
-export const createConsumer = () => {
-	
-	const url =`${apiUrl}api/polar/consumer`
-	const {data, error, inProgress} = useFetch(url, "POST");
-	
-	var i=0;
-	while(inProgress){
-		i=i+1;
-		console.log(i)
-		if(i>5000)
-			{
-				break;
-			}
-	}
-	console.log(data?.name);
-	
 }
