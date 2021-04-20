@@ -38,20 +38,34 @@ function useFetch(URL, METHOD) {
 	return {data, error, inProgress};
 }
 
-export const createConsumer = () => {
+
+export const getConsumerId = async() => {
+	
+	return new Promise
+	AsyncStorage.getItem('sellerId', (err, result) => {
+		if (result){
+			const UserId = parseInt(result);
+		} else{
+			Promise.reject("CONSUMERID_MISSING");
+		}
+		
+		if(err){
+			console.log(err);
+		}
+		
+	})
+}
+
+
+export const createConsumer = async() => {
 	
 	const url =`${apiUrl}api/polar/consumer`
 	const {data, error, inProgress} = useFetch(url, "POST");
+	console.log(String(data?.insertId));
 	
-	var i=0;
-	while(inProgress){
-		i=i+1;
-		console.log(i)
-		if(i>5000)
-			{
-				break;
-			}
-	}
-	console.log(data?.name);
-	
-}
+	AsyncStorage.setItem('consumerId', String(data?.insertId));
+					   
+	return new Promise((resolve, reject) =>{
+			   
+		})
+};
