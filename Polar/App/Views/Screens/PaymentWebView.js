@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -8,21 +8,22 @@ import {
   Dimensions,
 } from "react-native";
 import MyButton from '../Components/Button';
+import styled from 'styled-components/native'
+import { WebView } from 'react-native-webview';
+import IMP from 'iamport-react-native';
 
 export const PaymentWebView = Data => {
 	return(
-		<Container>
-			<Text> Payment Web View </Text>
-		</Container>
+			 <WebView source={{ uri: "https://www.naver.com/" }} />
+   
 	)
 }
-
-
-export default PaymentWebView;
-
 
 const Container = styled.View`
 flex: 1;
 justify-content: center;
 align-items: center;
 `;
+
+
+export default PaymentWebView;

@@ -4,11 +4,14 @@ import QRCode from 'react-native-qrcode-svg';
 import { observer, inject } from "mobx-react";
 import { SafeAreaView, View, Text, StyleSheet, Modal, Dimensions} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { WebView } from 'react-native-webview';
+import IMP from 'iamport-react-native';
 
 import CommonStyles from '../Common/styles';
 import MyButton from '../Components/Button';
 
 import {createConsumer, getPaymentInfo} from '../../Stores';
+
 
 const StyledText = styled.Text`
 font-size: 30px;
@@ -34,7 +37,8 @@ const QRPay = () =>{
 	
 	const Data = getPaymentInfo(String(consumerId));
 	const [ShowPopup, setShowPopup]= useState(false);
-	console.log(`consumerId: ${consumerId}`)
+	const [ShowWebView, setShowWebView] = useState(false);
+	console.log(`data: ${String(Data)}`)
 	
 	return (
 			
@@ -43,7 +47,7 @@ const QRPay = () =>{
 				<Text> </Text>
 				<QRCode value = {String(consumerId)} />
 				<Text> </Text>
-				{Data ? <MyButton title = "결제정보 확인" onPress = {() => setShowPopup(true)}  /> : <MyButton title = "No Payment Info" onPress = {()=>null} /> }
+				{Data ? <MyButton title = "결제정보 확인" onPress = {() => setShowPopup(true)}  /> : <MyButton title = "No Payment Info" onPress = {()=>setShowPopup(true)} /> }
 				<Modal visible = {ShowPopup} animationType="slide" transparent = {false} >
 					<View style={styles.modalBackground}>
 							<Container>
@@ -52,7 +56,13 @@ const QRPay = () =>{
 							{Data? <Text> 매장 ID : {Data[0].sellerId} </Text> : <Text> 결제 정보가 없습니다. </Text>}
 							{Data? <Text> 소비자 ID : {Data[0].consumerId} </Text> : <Text>  </Text>}
 							{Data? <Text> 요청 시각: {Data[0].createdAt} </Text> : <Text>  </Text>}
-							
+							{Data? <MyButton title = "결제 하기" onPress = {() => setShowWebView(true)} /> : <Text> </Text>}
+								{ShowWebView? <Modal visible = {ShowWebView} animationType="slide" transparent = {false} >
+									<MyButton title = "Close" onPress = {() => setShowWebView(false)} />
+									<WebView source={{ uri: "https://www.naver.com/" }} />
+									
+								</Modal> 
+								: null}
 							<MyButton title = "Close" onPress = {() => setShowPopup(false)} />
 							
         					</Container>
