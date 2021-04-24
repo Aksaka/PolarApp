@@ -31,7 +31,7 @@
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "port": 59410
+      "port": 51210
     }
   }
 }

@@ -6,7 +6,7 @@ const MyButton = props =>{
 	return (
 	<TouchableOpacity 
 			style={{
-				backgroundColor: colors.blue,
+				backgroundColor: colors.Polarblue,
 				padding: 16,
 				margin: 10,
 				borderRadius: 8, }}

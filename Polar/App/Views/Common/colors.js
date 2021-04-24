@@ -6,4 +6,5 @@ export const colors = {
 	red: '#e84118',
 	blue: '#3679fe',
 	skyblue: '#87cdfa',
+	Polarblue: '#6db5ce',
 }

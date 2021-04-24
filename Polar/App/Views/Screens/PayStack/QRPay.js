@@ -7,23 +7,23 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { WebView } from 'react-native-webview';
 import IMP from 'iamport-react-native';
 
-import CommonStyles from '../Common/styles';
-import MyButton from '../Components/Button';
+import MyButton from '../../Components/Button';
 
-import {createConsumer, getPaymentInfo} from '../../Stores';
-
+import {createConsumer, getPaymentInfo, useFetch} from '../../../Stores';
+let Polar_logo = require('../../../Assets/Image/Polar_Logo.png');
 
 const StyledText = styled.Text`
 font-size: 30px;
 `;
 
-const QRPay = () =>{
+const QRPay = ({navigation}) =>{
 	
-	const [consumerId,consumerIdSet] = useState('Loding now');
+	const [consumerId,setConsumerId] = useState('Loading now');
+	//const [Data, setData] = useState(null)
 	
 	const result = AsyncStorage.getItem('consumerId').then(res => {
             if(res) {
-				consumerIdSet(res);
+				setConsumerId(res);
                 return Promise.resolve(consumerId);
             } else {
 				createConsumer();
@@ -36,16 +36,18 @@ const QRPay = () =>{
 	);
 	
 	const Data = getPaymentInfo(String(consumerId));
+	//var Data = null;
 	const [ShowPopup, setShowPopup]= useState(false);
 	const [ShowWebView, setShowWebView] = useState(false);
 	console.log(`data: ${String(Data)}`)
-	
 	return (
 			
 			<Container>
 				<StyledText> Consumer Id : {String(consumerId)}</StyledText>
 				<Text> </Text>
-				<QRCode value = {String(consumerId)} />
+				<QRCode value = {String(consumerId)} logo={Polar_logo} logoSize={45} size = {150}/>
+				<Text> </Text>
+				<Text> </Text>
 				<Text> </Text>
 				{Data ? <MyButton title = "결제정보 확인" onPress = {() => setShowPopup(true)}  /> : <MyButton title = "No Payment Info" onPress = {()=>setShowPopup(true)} /> }
 				<Modal visible = {ShowPopup} animationType="slide" transparent = {false} >
@@ -58,8 +60,9 @@ const QRPay = () =>{
 							{Data? <Text> 요청 시각: {Data[0].createdAt} </Text> : <Text>  </Text>}
 							{Data? <MyButton title = "결제 하기" onPress = {() => setShowWebView(true)} /> : <Text> </Text>}
 								{ShowWebView? <Modal visible = {ShowWebView} animationType="slide" transparent = {false} >
+									<MyButton title = "결제" onPress = {() => navigation.navigate("PaymentWebView")} />
 									<MyButton title = "Close" onPress = {() => setShowWebView(false)} />
-									<WebView source={{ uri: "https://www.naver.com/" }} />
+									
 									
 								</Modal> 
 								: null}
@@ -89,36 +92,6 @@ const styles = StyleSheet.create({
 });
 
 
-function useFetch(URL, METHOD) {
-	const [data, setData] = useState(null);
-	const [error, setError]= useState(null);
-	const [inProgress, setinProgress] = useState(false);
-	useEffect( () => {
-		const fetchData = async () => {
-			try{
-				setinProgress(true);
-				const res = await fetch(URL, {method: METHOD});
-				const result = await res.json();
-				
-				if(res.ok){
-					setData(result);
-					setError(null);
-				}
-				else{
-					throw result;
-				}
-			}
-			catch(error){
-				setError(error);
-			}
-			finally{
-				setinProgress(false);
-			}
-		};
-	fetchData();
-	}, [])
-	return {data, error, inProgress};
-}
 
 const Container = styled.View`
 flex: 1;
