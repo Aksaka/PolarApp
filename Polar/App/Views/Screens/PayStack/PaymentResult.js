@@ -1,11 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { List, ListItem, Icon, Button, Text } from 'native-base';
+import { SafeAreaView, StyleSheet, Modal, Dimensions} from 'react-native';
 
 import MyButton from '../../Components/Button';
 
 export default function PaymentResult({ navigation }) {
-  const response = navigation.getParam('response');
+  const response = navigation.params('response');
   const { imp_success, success, imp_uid, merchant_uid, error_msg } = response;
   const { wrapper, title, listContainer, list, label, value } = resultStyles;
 

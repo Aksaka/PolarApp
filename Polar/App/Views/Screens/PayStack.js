@@ -9,7 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import QRPay from './PayStack/QRPay';
 import PaymentWebView from './PayStack/PaymentWebView';
-//import PaymentResult from './PayStack/PaymentResult'
+import PaymentResult from './PayStack/PaymentResult'
 const Stack = createStackNavigator();
 
 
@@ -18,6 +18,7 @@ export const PayStack = () =>{
 		<Stack.Navigator initialRouteName="QRPay">
 			<Stack.Screen name = "QRPay" component = {QRPay} options={{headerShown: false}} />
 			<Stack.Screen name = "PaymentWebView" component = {PaymentWebView} options={{headerShown: false}} />
+			<Stack.Screen name = "PaymentResult" component = {PaymentResult} options = {{headerShown: false}} />
 		</Stack.Navigator>
 	)
 }
