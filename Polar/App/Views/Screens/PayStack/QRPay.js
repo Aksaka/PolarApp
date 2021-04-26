@@ -35,11 +35,9 @@ const QRPay = ({navigation}) =>{
 		
 	);
 	
-	const Data = getPaymentInfo(String(consumerId));
 	//var Data = null;
 	const [ShowPopup, setShowPopup]= useState(false);
 	const [ShowWebView, setShowWebView] = useState(false);
-	console.log(`data: ${String(Data)}`)
 	return (
 			
 			<Container>
@@ -49,28 +47,8 @@ const QRPay = ({navigation}) =>{
 				<Text> </Text>
 				<Text> </Text>
 				<Text> </Text>
-				{Data ? <MyButton title = "결제정보 확인" onPress = {() => setShowPopup(true)}  /> : <MyButton title = "No Payment Info" onPress = {()=>setShowPopup(true)} /> }
-				<Modal visible = {ShowPopup} animationType="slide" transparent = {false} >
-					<View style={styles.modalBackground}>
-							<Container>
-							{Data? <Text> 결제 번호: {Data[0].id} </Text> : <Text> </Text>}
-							{Data? <Text>  가격 : {Data[0].price} </Text> : <Text> </Text>}
-							{Data? <Text> 매장 ID : {Data[0].sellerId} </Text> : <Text> 결제 정보가 없습니다. </Text>}
-							{Data? <Text> 소비자 ID : {Data[0].consumerId} </Text> : <Text>  </Text>}
-							{Data? <Text> 요청 시각: {Data[0].createdAt} </Text> : <Text>  </Text>}
-							{Data? <MyButton title = "결제 하기" onPress = {() => setShowWebView(true)} /> : <Text> </Text>}
-								{ShowWebView? <Modal visible = {ShowWebView} animationType="slide" transparent = {false} >
-									<MyButton title = "결제" onPress = {() => navigation.navigate("PaymentWebView")} />
-									<MyButton title = "Close" onPress = {() => setShowWebView(false)} />
-									
-									
-								</Modal> 
-								: null}
-							<MyButton title = "Close" onPress = {() => setShowPopup(false)} />
-							
-        					</Container>
-      				</View>
-				</Modal>
+				<MyButton title = "결제정보 확인" onPress = {() => navigation.navigate( "PaymentInfo", {consumerId})}  /> 
+        		
 				
 			</Container>
 	);

@@ -5,8 +5,9 @@ import { SafeAreaView, StyleSheet, Modal, Dimensions} from 'react-native';
 
 import MyButton from '../../Components/Button';
 
-export default function PaymentResult({ navigation }) {
-  const response = navigation.params('response');
+export default function PaymentResult({ route, navigation }) {
+  const response = route.params;
+	console.log(response);
   const { imp_success, success, imp_uid, merchant_uid, error_msg } = response;
   const { wrapper, title, listContainer, list, label, value } = resultStyles;
 
