@@ -20,7 +20,7 @@ export const PaymentInfo = ({ route, navigation }) =>{
 			{Data? <Text> 소비자 ID : {Data[0].consumerId} </Text> : <Text>  </Text>}
 			{Data? <Text> 요청 시각: {Data[0].createdAt} </Text> : <Text>  </Text>}
 			
-			<MyButton title = "결제" onPress = {() => navigation.navigate("PaymentWebView")} />
+			<MyButton title = "결제" onPress = {() => navigation.navigate("PaymentWebView", Data)} />
 			<MyButton title = "닫기" onPress = {() => navigation.goBack()} />
 		</Container>
 	)
