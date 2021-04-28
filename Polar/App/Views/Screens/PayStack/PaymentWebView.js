@@ -30,7 +30,7 @@ export const PaymentWebView = ({ route, navigation }) =>{
 	console.log(`Id: ${payData[0].consumerId}`);
 	return (
 		 <IMP.Payment
-      userCode={'imp19424728'}
+      userCode={'imp10391932'}
       loading={<Loading />}
       data={Data}
       callback={response => navigation.replace('PaymentResult', response )}

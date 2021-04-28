@@ -18,21 +18,21 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.yourappname",
+      "bundleIdentifier": "com.yourcompany.yourappname"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.yourcompany.yourappname",
-		"versionCode": 1,
+      "package": "com.yourcompany.yourappname"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "port": 56656
-    }
+      "port": 52950
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

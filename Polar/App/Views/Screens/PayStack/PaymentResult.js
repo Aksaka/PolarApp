@@ -18,7 +18,7 @@ export default function PaymentResult({ route, navigation }) {
 
   return (
 	  <Container>
-	  	 <Text> End! </Text>
+	  	 <Text> End? </Text>
 		 <Text> </Text>
 		 <MyButton title = "돌아가기" onPress = {() => navigation.popToTop()} />
 	  </Container>
